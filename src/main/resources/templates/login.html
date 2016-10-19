@@ -5,10 +5,17 @@
 <title>登录</title>
 </head>
 <body>
+<#if loginMsg??>
+	${loginMsg}
+</#if>
 <form action="/login" method="post">
-<input type="text" name="username"/>
-<input type="text" name="password"/>
-<input type="submit" value="登录" />
+<ul>
+	<li><input type="text" name="username"/></li>
+	<li><input type="text" name="password"/></li>
+	<li><img src="/captcha" /></li>
+	<li><input type="text" name="captcha"/></li>
+	<li><input type="submit" value="登录" /></li>
+</ul>
 </form>
 </body>
 </html>
