@@ -9,7 +9,6 @@ public class SmsCaptcha extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	
 	private String code;
 
 	public User getUser() {

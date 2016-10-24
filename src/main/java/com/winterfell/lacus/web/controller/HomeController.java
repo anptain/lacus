@@ -1,24 +1,24 @@
 package com.winterfell.lacus.web.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.winterfell.lacus.exception.BadCaptchaException;
+import com.winterfell.lacus.web.form.RegisterForm;
 
 @Controller
-public class HomeController {
+public class HomeController extends AbstractController {
 	@RequestMapping("/")
 	public String home(Model model) {
-//		 UserDetails userDetails = (UserDetails)
-//		 SecurityContextHolder.getContext()
-//		 .getAuthentication()
-//		 .getPrincipal();
+		getUser();
 		model.addAttribute("msg", "你好，世界");
 		return "index";
 	}
@@ -35,6 +35,13 @@ public class HomeController {
 			}
 		}
 		return "login";
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String register(@Valid RegisterForm register, BindingResult result) {
+		if (result.hasErrors()) {
+		}
+		return "index";
 	}
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)

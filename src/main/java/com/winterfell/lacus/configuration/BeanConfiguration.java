@@ -33,8 +33,8 @@ public class BeanConfiguration {
 		settings.putAll(properties.getSettings());
 		configurer.setFreemarkerSettings(settings);
 		Map<String, Object> variables = new HashMap<>();
-		variables.put("test", new MyViewDirective());
 		configurer.setFreemarkerVariables(variables);
+		variables.put("test", new MyViewDirective());
 		return configurer;
 	}
 

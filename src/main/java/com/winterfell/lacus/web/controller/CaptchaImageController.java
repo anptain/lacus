@@ -16,7 +16,7 @@ import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 
 @Controller
-public class CaptchaImageController {
+public class CaptchaImageController extends AbstractController{
 
 	@Autowired
 	private Producer captchaProducer;
