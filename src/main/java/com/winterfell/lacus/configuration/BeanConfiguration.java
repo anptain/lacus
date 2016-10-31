@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
-import com.winterfell.lacus.freemarker.directive.MyViewDirective;
+import com.winterfell.lacus.freemarker.directive.EnumInterpreter;
 
 @Configuration
 public class BeanConfiguration {
@@ -32,9 +32,10 @@ public class BeanConfiguration {
 		Properties settings = new Properties();
 		settings.putAll(properties.getSettings());
 		configurer.setFreemarkerSettings(settings);
+				
 		Map<String, Object> variables = new HashMap<>();
 		configurer.setFreemarkerVariables(variables);
-		variables.put("test", new MyViewDirective());
+		variables.put("test", new EnumInterpreter());
 		return configurer;
 	}
 
