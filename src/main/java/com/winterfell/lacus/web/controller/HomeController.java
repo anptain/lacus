@@ -11,8 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.winterfell.lacus.common.UserStatus;
 import com.winterfell.lacus.entity.User;
-import com.winterfell.lacus.entity.User.Status;
 import com.winterfell.lacus.exception.BadCaptchaException;
 import com.winterfell.lacus.web.form.RegisterForm;
 
@@ -22,7 +22,7 @@ public class HomeController extends AbstractController {
 	public String home(Model model) {
 		getUser();
 		model.addAttribute("msg", "你好，世界");
-		model.addAttribute("enum", Status.NORMAL);
+		model.addAttribute("enum", UserStatus.NORMAL);
 		model.addAttribute("test2", new User());
 		return "index";
 	}

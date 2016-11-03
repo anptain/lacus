@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.winterfell.lacus.entity.User;
-import com.winterfell.lacus.entity.User.Status;
+import com.winterfell.lacus.common.UserStatus;
 
 import freemarker.core.Environment;
 import freemarker.ext.beans.StringModel;
@@ -17,11 +16,11 @@ import freemarker.template.utility.DeepUnwrap;
 
 public class EnumInterpreter implements TemplateDirectiveModel {
 
-	private final static String DIRECTIVE_ENUM_KEY = "enum";
+	private final static String DIRECTIVE_ENUM_KEY = "key";
 
 	private static Map<Object, String> enumTranslate = new HashMap<>();
 	static {
-		enumTranslate.put(Status.NORMAL, "正常");
+		enumTranslate.put(UserStatus.NORMAL, "正常");
 	}
 
 	@Override
@@ -29,8 +28,13 @@ public class EnumInterpreter implements TemplateDirectiveModel {
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body)
 			throws TemplateException, IOException {
 		// ContextLoader.getCurrentWebApplicationContext().getBean(arg0)
-		((User) ((StringModel) params.get("name")).getWrappedObject()).getId();
-		Object status = ((StringModel) params.get(DIRECTIVE_ENUM_KEY)).getWrappedObject();
-		env.getOut().write(enumTranslate.get(status));
+		Object keyWrap = params.get(DIRECTIVE_ENUM_KEY);
+		if (keyWrap instanceof StringModel) {
+			Object key = DeepUnwrap.unwrap((StringModel) keyWrap);
+			String text = enumTranslate.get(key);
+			if (text != null) {
+				env.getOut().write(enumTranslate.get(text));
+			}
+		}
 	}
 }

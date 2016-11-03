@@ -18,5 +18,4 @@ public class GetSysdateMethod implements TemplateMethodModelEx {
 
 		return sdf.format(date);
 	}
-
 }

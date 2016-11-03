@@ -4,21 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+import com.winterfell.lacus.common.UserStatus;
+
 @Entity
 public class User extends AbstractEntity {
 	private static final long serialVersionUID = -7179844817539115010L;
 	private String username;
 	private String password;
 	@Enumerated(EnumType.STRING)
-	private Status status;
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
+	private UserStatus userStatus;
+	private String phone;
 
 	public String getUsername() {
 		return username;
@@ -36,7 +31,20 @@ public class User extends AbstractEntity {
 		this.password = password;
 	}
 
-	public enum Status {
-		NORMAL
+	public UserStatus getUserStatus() {
+		return userStatus;
 	}
+
+	public void setUserStatus(UserStatus userStatus) {
+		this.userStatus = userStatus;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 }
