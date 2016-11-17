@@ -1,5 +1,8 @@
 package com.winterfell.lacus.web.controller;
 
+import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -10,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.winterfell.lacus.common.UserStatus;
 import com.winterfell.lacus.entity.User;
@@ -19,7 +23,7 @@ import com.winterfell.lacus.web.form.RegisterForm;
 @Controller
 public class HomeController extends AbstractController {
 	@RequestMapping("/")
-	public String home(Model model) {
+	public String home(Model model,HttpServletRequest request) {		
 		getUser();
 		model.addAttribute("msg", "你好，世界");
 		model.addAttribute("enum", UserStatus.NORMAL);
