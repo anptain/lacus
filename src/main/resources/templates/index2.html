@@ -1,0 +1,29 @@
+<#import "spring.ftl" as spring />
+<#assign upper = "com.winterfell.lacus.freemarker.directive.GetSysdateMethod"?new()>
+
+
+
+<#if (Session.SPRING_SECURITY_CONTEXT.authentication.principal.username)??>
+<p>您好，${Session.SPRING_SECURITY_CONTEXT.authentication.principal.username}</p>
+<#else>
+<p>您好，请登录！</p>
+</#if>
+
+<#if enum == 'NORMAL'>
+abc
+</#if>
+<@test name=test2 enum=enum >  
+               区域的原html内容  
+</@test>
+
+<@authorize access="hasRole('admin')" >
+abc+++
+</@authorize>
+
+${"<p>&"?html}
+
+${title!}
+
+${upper("yyyy-MM-dd HH:mm:ss")}
+-----------------------------------
+<@spring.message "msg" />
